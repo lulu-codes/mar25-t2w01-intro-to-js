@@ -1,60 +1,130 @@
 // console.log is like print in Python
 console.log("Hello, world! From the index.js file!");
 
-// setting up a port number variable (as null)
-let customPortNumber = null;
+// //#region Basic conditional logic and for loops
+// (folding everything between //#region and //#endregion into a neat block)
 
-// ??= is the nullish coalescing assignment operator (newer than ||=)
-// it only assigns the value on the right if the variable on the left is falsy value (null, undefined)
-// basically like "Use 5000 as the backup port if nothing is set"
-const PORT = customPortNumber ??= 5000;
-// const PORT = customPortNumber || 5000;
+// // setting up a port number variable (as null)
+// let customPortNumber = null;
+
+// // ??= is the nullish coalescing assignment operator (newer than ||=)
+// // it only assigns the value on the right if the variable on the left is falsy value (null, undefined)
+// // basically like "Use 5000 as the backup port if nothing is set"
+// const PORT = customPortNumber ??= 5000;
+// // const PORT = customPortNumber || 5000;
+
+// console.log("Port is " + PORT);
+// console.log("Custom port number is: " + customPortNumber);
+
+// // Example of loose equality (==)
+// let dinner = "butter chicken";
+
+// // Loose quality, dinner will be coerced into a string!
+// if (dinner == "butter chicken"){
+// 	console.log("I'm full!");
+// } else {
+// 	console.log("I'm ready for dessert!");
+// }
+
+// // Example of strict equality (===)
+// let luckyNumber = 42;
+
+// // Strict equality, comparison will not be true!
+// // === requires type AND value to match
+// if (luckyNumber === "42") {
+// 	console.log("Lucky number is the answer to life, the universe, and everything!");
+// } else {
+// 	console.log("Lucky number is nice, sure, but ehh...");
+// }
+
+// // IF = "if true, run this one statement"
+// if (dinner == "butter chicken") console.log("I'm full!");
+
+// // basic FOR loop
+// for (let index = 0; index < 10; index++) {
+// 	console.log(index);
+
+// }
+
+// // looping through an array
+// let fruits = ["apple", "mango", "banana"];
+
+// // FOR loops are best for performance (faster)
+// for (let index = 0; index < fruits.length; index++) {
+// 	const fruit = fruits[index];
+// 	console.log(fruit);
+// }
+
+// // FOREACH is better for readability for devs (cleaner)
+// // but it's a wrapper around FOR, so it's slower than FOR
+// fruits.forEach(fruit => {
+// 	console.log(fruit);
+// });
+
+// //#endregion
 
 
-console.log("Port is " + PORT);
-console.log("Custom port number is: " + customPortNumber);
 
-// Example of loose equality (==)
-let dinner = "butter chicken";
 
-// Loose quality, dinner will be coerced into a string!
-if (dinner == "butter chicken"){
-	console.log("I'm full!");
-} else {
-	console.log("I'm ready for dessert!");
+//#region Functions
+
+// defining a function
+function exampleFunction(){
+	console.log("Function code happens here!");
 }
 
-// Example of strict equality (===)
-let luckyNumber = 42;
+// calling the function
+exampleFunction();
 
-// Strict equality, comparison will not be true!
-// === requires type AND value to match
-if (luckyNumber === "42") {
-	console.log("Lucky number is the answer to life, the universe, and everything!");
-} else {
-	console.log("Lucky number is nice, sure, but ehh...");
+exampleFunction();
+
+// function with a parameter
+// messageToRepeat is a placeholder that gets filled in when the function is called
+function messageRepeater(messageToRepeat){
+    // prints the message 3 times
+	console.log(messageToRepeat + messageToRepeat + messageToRepeat);
 }
 
-// IF = "if true, run this one statement"
-if (dinner == "butter chicken") console.log("I'm full!");
-
-// basic FOR loop
-for (let index = 0; index < 10; index++) {
-	console.log(index);
-
+// using for loop - to call the function multiple times (2 times)
+// loop = do again until condition is false,
+// so in this case do again while index is less than 2
+for (let index = 0; index < 2; index++) {
+	messageRepeater("hello");
 }
 
-// looping through an array
-let fruits = ["apple", "mango", "banana"];
+// array (list) of favourite dinners
+let favouriteDinners = [
+	"palak paneer",
+	"katsu curry",
+	"dumplings",
+	"laghman",
+	"lentil bolognese"
+];
 
-// FOR loops are best for performance (faster)
-for (let index = 0; index < fruits.length; index++) {
-	const fruit = fruits[index];
-	console.log(fruit);
+// long form forEach example (expanded version)
+// dinner is the placeholder for each item in the array
+// favouriteDinners.forEach(dinner => {
+// 	messageRepeater(dinner);
+// });
+
+
+// arrow function (=>) short form forEach example
+// (short hand version of the above example)
+// if function only has ONE statement, can write it all on one line
+favouriteDinners.forEach(dinner => messageRepeater(dinner));
+
+// arrow function with a parameter
+// storing the function in a constant variable, so we can call it later
+const messageRepeaterArrowFunction = (messageToRepeat) => {
+	console.log("Arrow function here! Here is the value of this:" + this);
 }
 
-// FOREACH is better for readability for devs (cleaner)
-// but it's a wrapper around FOR, so it's slower than FOR
-fruits.forEach(fruit => {
-	console.log(fruit);
-});
+// calling the arrow function with a value
+messageRepeaterArrowFunction("bananas");
+
+// Use const in the function declaration to avoid accidentally doing this:
+// messageRepeaterArrowFunction = "bananas";
+// which would overwrite the function with a string value
+// note: using const prevents accidentally reassigning the variable (protects function def)
+
+//#endregion
