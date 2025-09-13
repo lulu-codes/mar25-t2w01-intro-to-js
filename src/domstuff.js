@@ -19,10 +19,7 @@ function paragraphTagUpdater(){
 // call the function to update the p tag
 paragraphTagUpdater();
 
-
-
 // Breakfast Menu renderer
-
 // array of breakfast menu items
 let breakfastMenuItems = [
 	"pancakes",
@@ -115,7 +112,11 @@ function breakfastRenderer () {
 
 }
 
-// call the breakfast menu renderer function
-breakfastRenderer();
 
+// call the breakfast menu renderer function
+// breakfastRenderer();
+
+// add event listener to the button
+let menuToggleButton = document.getElementById("menuToggleButton");
+menuToggleButton.addEventListener("click", breakfastRenderer);
 
