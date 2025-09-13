@@ -46,11 +46,76 @@ function breakfastRenderer () {
 	// document.body.appendChild()
 
 
+
 	// 2. create menu options
+	// for loop style
+	// for (let index = 0; index < breakfastMenuItems.length; index++) {
+	// 	const individualMenuItem = breakfastMenuItems[index];
+	// 	console.log(individualMenuItem);
+	// }
+
+	// forof style
+	// for (const individualMenuItem of breakfastMenuItems) {
+	// 	console.log(individualMenuItem);
+	// }
+
+	// forin style
+	// forin does not like arrays with unassigned positions
+	// for (const key in breakfastMenuItems) {
+	// 	// if (!Object.hasOwn(object, key)) continue;
+
+	// 	const element = breakfastMenuItems[key];
+
+	// 	console.log(key, element);
+
+	// }
+
+	// foreach style
+	// foreach is great for doing stuff per array item
+	// breakfastMenuItems.forEach(individualMenuItem => {
+	// 	console.log(individualMenuItem);
+	// 	let menuItemCard = document.createElement("section");
+	// 	menuItemCard.className = "menuitem";
+	// 	let menuItemTitle = document.createElement("h2");
+	// 	menuItemTitle.innerText = individualMenuItem;
+	// 	menuItemCard.appendChild(menuItemTitle);
+
+	// 	// searching the page for content is SLOW, avoid that!
+	// 	// let menuContainer = document.getElementById("breakfastmenu");
+	// 	// if menuContainer is defined before the loop, awesome!  things will be performant:
+	// 	menuContainer.appendChild(menuItemCard);
+	// });
+
+	// map style
+	// map is amazing for doing stuff per array item and saving a result per item
+	let menuItemCards = breakfastMenuItems.map(individualMenuItem => {
+		console.log(individualMenuItem);
+
+		// copied from foreach:
+		let menuItemCard = document.createElement("section");
+		menuItemCard.className = "menuitem";
+		let menuItemTitle = document.createElement("h2");
+		menuItemTitle.innerText = individualMenuItem;
+		menuItemCard.appendChild(menuItemTitle);
+
+		// anything returned is given to the variable in "let someVariables = someArray.map()"
+		return menuItemCard;
+	});
 
 	// 3. insert menu options into breakfast menu container
+	if (menuItemCards.length != 0){
+		console.log(menuItemCards);
+		// menuContainer.appendChild(...menuItemCards);
+		// appendChild([]);
+		// appendChild(item1, item2, item3)
+
+		menuContainer.append(...menuItemCards);
+
+	}
+
 }
 
 // call the breakfast menu renderer function
 breakfastRenderer();
+
 
