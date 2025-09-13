@@ -20,12 +20,14 @@
 		// is placed after this script tag
 		breakfastRenderer();
 	</script> -->
-
+	<section id="menuSearcher">
+		<label for="menuSearchField">Filter by term:</label>
+		<input type="text" name="menuSearchField" id="menuSearchField" value="">
+	</section>
 	<!-- the button event works even though script tag importing domstuff.js
 	 is loaded after the button declaration
 	 because the user has to click this, which would happen after the import happens -->
 	<!-- <button onclick="breakfastRenderer()">Show the Menu</button> -->
-
 	<button id="menuToggleButton">Show the Menu</button>
 
 	<!-- <section id="breakfastmenu"></section> -->
@@ -38,5 +40,3 @@
 	<script src="./domstuff.js"></script>
 </body>
 </html>
-
-

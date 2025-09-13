@@ -25,12 +25,24 @@ let breakfastMenuItems = [
 	"pancakes",
 	"blueberry pancakes",
 	"bacon and eggs",
+	// ,
+	// null,
+	// undefined,
 	"omelette",
 	"avo smash"
 ];
 
 // function to render the breakfast menu
-function breakfastRenderer () {
+function breakfastRenderer (targetMenuList = breakfastMenuItems) {
+
+	console.log(targetMenuList);
+
+	// 0. Delete existing menu content
+	let existingMenu = document.getElementById("breakfastmenu");
+	if (existingMenu){
+		existingMenu.remove();
+	}
+
 	// 1. render the breakfast menu container
 	// 1a. find the menu container's parent element
 	let targetParentContainer = document.querySelector("body");
@@ -41,7 +53,6 @@ function breakfastRenderer () {
 	// 1c. append the menu container element to the parent element
 	targetParentContainer.appendChild(menuContainer);
 	// document.body.appendChild()
-
 
 
 	// 2. create menu options
@@ -85,7 +96,7 @@ function breakfastRenderer () {
 
 	// map style
 	// map is amazing for doing stuff per array item and saving a result per item
-	let menuItemCards = breakfastMenuItems.map(individualMenuItem => {
+	let menuItemCards = targetMenuList.map(individualMenuItem => {
 		console.log(individualMenuItem);
 
 		// copied from foreach:
@@ -118,5 +129,37 @@ function breakfastRenderer () {
 
 // add event listener to the button
 let menuToggleButton = document.getElementById("menuToggleButton");
-menuToggleButton.addEventListener("click", breakfastRenderer);
+menuToggleButton.addEventListener("click", (event) => breakfastRenderer(breakfastMenuItems));
+// menuToggleButton.addEventListener("click", () => breakfastRenderer(breakfastMenuItems));
+
+let menuFilterField = document.getElementById("menuSearchField");
+menuFilterField.addEventListener("change", (event) => {
+	console.log("Search field has changed!");
+	console.log(event.target.value);
+
+	let userSearchTerm = event.target.value;
+
+
+	// Potential way to filter the menu HTML content:
+	// 1. Finding the menu content on the page
+	// 2. Finding the innerText or classname of each item in the found menu content
+	// 3. Remove elements that do not have matching innerText
+	// This way is good because it does not lean on existing array data
+	// It always finds the freshest page content and filters that
+
+	// If the existing array is available to this function, instead we can do:
+	// 1. Check if the search  term is in the array
+	// 2. Clear out the rendered menu content
+	// 3. Call the menu renderer with a new, filtered array
+	let matchingItems = breakfastMenuItems.filter((individualItem) => {
+		// if (individualItem.includes(userSearchTerm)){
+		// 	return individualItem;
+		// }
+
+		return individualItem.includes(userSearchTerm);
+	});
+	console.log(matchingItems);
+
+	breakfastRenderer(matchingItems);
+});
 
